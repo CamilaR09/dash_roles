@@ -35,6 +35,9 @@
                                     <td>{{ $producto->categoria->descripcion }}</td>
                                     <td>
                                         <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
+                                            <!-- Nuevo botón para mostrar información en un modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productoModal{{ $producto->id }}">Ver</button>
+                                        
                                             @can('editar-producto')
                                             <a class="btn btn-info" href="{{ route('productos.edit',$producto->id) }}">Editar</a>
                                             @endcan
@@ -58,5 +61,34 @@
         </div>
     </div>
 </section>
+
+<!-- Modal para mostrar información completa del producto -->
+@foreach ($productos as $producto)
+<div class="modal fade" id="productoModal{{ $producto->id }}" tabindex="-1" role="dialog" aria-labelledby="productoModalLabel{{ $producto->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 style="color: red" class="modal-title" id="productoModalLabel{{ $producto->id }}">Detalles del Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black"><strong>ID:</strong> {{ $producto->id }}</p>
+                <p style="color: black"><strong>Nombre:</strong> {{ $producto->nombre }}</p>
+                <p style="color: black"><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
+                <p style="color: black"><strong>Precio:</strong> {{ $producto->precio }}</p>
+                <p style="color: black"><strong>Stock:</strong> {{ $producto->stock }}</p>
+                <p style="color: black"><strong>Categoría:</strong> {{ $producto->categoria->descripcion }}</p>
+                <p style="color: black"><strong>Creacion:</strong> {{ $producto->created_at }}</p>
+                <p style="color: black"><strong>Atualizacion:</strong> {{ $producto->updated_at }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection

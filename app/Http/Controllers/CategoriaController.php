@@ -47,7 +47,10 @@ class CategoriaController extends Controller
             'descripcion' => 'required',
         ]);
 
-        Categoria::create($request->all());
+        Categoria::create([
+            'descripcion' => $request->descripcion,
+            'activo' => $request->has('activo') ? true : false,
+        ]);
 
         return redirect()->route('categorias.index');
     }
@@ -87,7 +90,10 @@ class CategoriaController extends Controller
             'descripcion' => 'required',
         ]);
 
-        $categoria->update($request->all());
+        $categoria->update([
+            'descripcion' => $request->descripcion,
+            'activo' => $request->has('activo') ? true : false,
+        ]);
 
         return redirect()->route('categorias.index');
     }

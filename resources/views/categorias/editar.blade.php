@@ -31,6 +31,10 @@
                                 <label for="descripcion">Descripción</label>
                                 <input type="text" name="descripcion" class="form-control" id="descripcion" value="{{ $categoria->descripcion }}" placeholder="Ingrese la descripción de la categoría">
                             </div>
+                            <div class="form-group">
+                                <label for="activo">Activo</label>
+                                <input type="checkbox" name="activo" id="activo" {{ $categoria->activo ? 'checked' : '' }}> <!-- Checkbox para indicar si la categoría está activa -->
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-success">Actualizar</button>
                             <a href="{{ route('categorias.index') }}" class="btn btn-danger">Cancelar</a>

@@ -31,7 +31,9 @@
                                 <select name="categoria_id" class="form-control" id="categoria_id">
                                     <option value="">Seleccione una categoría</option>
                                     @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->descripcion }}</option>
+                                        @if ($categoria->activo) <!-- Verificar si la categoría está activa -->
+                                            <option value="{{ $categoria->id }}">{{ $categoria->descripcion }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -55,6 +57,7 @@
                                 <label for="stock">Stock</label>
                                 <input type="number" name="stock" class="form-control" id="stock" placeholder="Ingrese el stock del producto">
                             </div>
+                            
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-success">Guardar</button>

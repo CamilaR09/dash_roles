@@ -30,6 +30,10 @@
                                 <label for="descripcion">Descripción</label>
                                 <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la descripción de la categoría">
                             </div>
+                            <div class="form-group">
+                                <label for="activo">Activo</label>
+                                <input type="checkbox" name="activo" id="activo" checked> <!-- Checkbox para indicar si la categoría está activa -->
+                            </div>
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-success">Guardar</button>

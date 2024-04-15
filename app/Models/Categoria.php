@@ -10,7 +10,7 @@ class Categoria extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'descripcion'
+        'descripcion','activo'
     ];
 
     /**
@@ -20,4 +20,13 @@ class Categoria extends Model
     {
         return $this->hasMany(Producto::class, 'categoria_id');
     }
+    public static function boot()
+{
+    parent::boot();
+
+    static::creating(function($categoria) {
+        // Por defecto, estableceremos la categoría como activa al momento de crearla
+        $categoria->activo = true;
+    });
+}
 }

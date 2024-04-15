@@ -32,7 +32,11 @@
                                 <select name="categoria_id" class="form-control" id="categoria_id">
                                     <option value="">Seleccione una categoría</option>
                                     @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}" {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>{{ $categoria->descripcion }}</option>
+                                        @if ($categoria->activo)
+                                            <option value="{{ $categoria->id }}" {{ $categoria->id == $producto->categoria_id ? 'selected' : '' }}>
+                                                {{ $categoria->descripcion }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
